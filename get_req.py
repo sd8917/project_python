@@ -1,19 +1,32 @@
-from flask import  Flask ,jsonify,request
-app = Flask (__name__)
+from flask import Flask, jsonify, request
 
-languages =[{'name':'Javascript'}, {'name':'Python'}, {'name':'Ruby'}]
+app = Flask(__name__)
+
+languages = [{'name': 'Javascript'}, {'name': 'Python'}, {'name': 'Ruby'}]
+
+
 @app.route('/')
 def test():
-    return jsonify({'message' : 'It works!!'})
+    return jsonify({'message': 'It works!!'})
 
-@app.route('/lang',methods=['GET'])
+
+@app.route('/lang', methods=['GET'])
 def returnAll():
-    return jsonify({'languages':languages})
+    return jsonify({'languages': languages})
 
-@app.route('/lang/<string:name>', methods= ['GET'])
+
+@app.route('/lang/<string:name>', methods=['GET'])
 def returnOne(name):
-    langs = [language for language in languages if language ['name'] ==name]
-    return jsonify({'language':langs[0]})
+    langs = [language for language in languages if language['name'] == name]
+    return jsonify({'language': langs[0]})
+
+
+@app.route('/', methods=['POST'])
+def addOne():
+    language = {'name':request.json['name']}
+
+    languages.append(language)
+    return
 
 
 if __name__ == '__main__':

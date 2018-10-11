@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flask Templates</title>
+</head>
+<body>
+    <h1>Hello world</h1>
+    {% if lang %}
+    <p>
+    The Language you are using is {{ language }}.</p>
+    {% else %}
+    <p>The Framework you are using is {{ framework}} .</p>
+    {% endif %}
+</body>
+</html>
